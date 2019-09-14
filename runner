@@ -1,0 +1,14 @@
+#! /bin/bash
+
+for d in $(ls -d */)
+do
+	cp $1 ./$d/$1
+	run_test=$(python $d$1)
+	pass_fail=${run_test%%=*}
+	pass_fail=${pass_fail%%-*}
+
+	pass=$(grep -o "\." <<< "$pass_fail" | wc -l)
+	fail=$(grep -o "F" <<< "$pass_fail" | wc -l)
+
+	echo "${d%/}: $pass Passed, $fail Failed" >> output
+done

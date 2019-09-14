@@ -1,0 +1,4 @@
+To use this, type:
+./runner the_test.py
+
+The results will be printed to the file called output
